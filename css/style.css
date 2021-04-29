@@ -6,6 +6,11 @@
 }
 
 /*COMMON*/
+/*DEBUG*/
 img{
     width: 40px;
+}
+.movie-card{
+    border: 1px solid;
+    margin: 40px 0;
 }
