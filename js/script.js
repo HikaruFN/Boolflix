@@ -8,7 +8,7 @@ var root = new Vue(
             searchedMovie: []       
         },
         methods: {
-            //Funzione che interroga l'api =>themoviedb per ricevere le informazioni riguardanti il film con titolo uguale a quello ricevuto da =>inputValue
+            //Funzione =>searchMovie che interroga l'api =>themoviedb per ricevere le informazioni riguardanti il film con titolo uguale a quello ricevuto da =>inputValue
             //preleva le informazioni necessarie e le pusha nell'array =>searchedMovies
             //Al termine il valore di input value viene resettato
             //Se l'array=>searchedMovies è già occupato al rinnovo della funzione, l'array =>searchedMovies viene resettato 
