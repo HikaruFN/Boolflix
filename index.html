@@ -30,15 +30,29 @@
          v-for="element in searchedMovie">
             <p>Title: {{element.title}}</p>
             <p>Original Title: {{element.originalTitle}}</p>
+            <!--Flags(languages)-->
             <img
              v-if="element.language == 'it'"
              src="img/italy.png" alt="italy">
             <img
-            v-if="element.language == 'en' "
+             v-else-if="element.language == 'en' "
              src="img/united-states.png" alt="united-states">
+            <img
+             v-else-if="element.language =='fr'"
+             src="img/france.png" alt="france">
+            <img
+             v-else-if="element.language =='es'"
+             src="img/spain.png" alt="spain">
+            <img
+             v-else-if="element.language =='de'"
+             src="img/germany.png" alt="germany">
+             <img
+             v-else-if="element.language =='zh'"
+             src="img/china.png" alt="china"> 
             <p           
              v-else
             >Language: {{element.language}}</p>
+            <!--End Flags(languages)-->
             <p>Vote: {{element.vote}}</p>            
         </div>
         <!--End Movie card-->
