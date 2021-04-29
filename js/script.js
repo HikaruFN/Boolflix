@@ -28,7 +28,7 @@ var root = new Vue(
                                 title: result[i].title,
                                 originalTitle: result[i].original_title,
                                 language: result[i].original_language,
-                                vote: result[i].vote_average,
+                                vote: parseInt(result[i].vote_average),
                                 backdrop: result[i].backdrop_path
 
                             }
@@ -48,7 +48,7 @@ var root = new Vue(
                                     title: result[i].name,
                                     originalTitle: result[i].original_name,
                                     language: result[i].original_language,
-                                    vote: result[i].vote_average,
+                                    vote: parseInt(result[i].vote_average),
                                     backdrop: result[i].backdrop_path 
 
                                 }
@@ -57,6 +57,21 @@ var root = new Vue(
                     })
                     this.inputValue = '';
                     console.log(this.searchedTvShow);
+            },
+            //Funzione che trasforma il numero in un numero compreso fra 1 e 5
+            numberTransform(number){
+                if(number >= 0 && number <= 2 ){
+                    return number = 1;
+                }else if(number >= 3 && number <= 5){
+                    return number = 2;
+                }else if(number >= 5 && number <= 7){
+                    return number = 3;
+                }else if(number >= 8 && number <= 9){
+                    return number = 4;
+                }else if(number == 10){
+                    return number = 5;
+                }
+                    
             }
         },
         mounted(){
