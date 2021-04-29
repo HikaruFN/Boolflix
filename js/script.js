@@ -5,14 +5,16 @@ var root = new Vue(
             //contiene il valore del testo legato con v-model alla input
             inputValue: '',    
             //Array contenente film cercato 
-            searchedMovie: []       
+            searchedMovie: [],
+            //Array contenente Serie-TV cercata     
+            searchedTvShow: []  
         },
         methods: {
-            //Funzione =>searchMovie che interroga l'api =>themoviedb per ricevere le informazioni riguardanti il film con titolo uguale a quello ricevuto da =>inputValue
+            //Funzione =>search che interroga l'api =>themoviedb per ricevere le informazioni riguardanti il film con titolo uguale a quello ricevuto da =>inputValue
             //preleva le informazioni necessarie e le pusha nell'array =>searchedMovies
             //Al termine il valore di input value viene resettato
             //Se l'array=>searchedMovies è già occupato al rinnovo della funzione, l'array =>searchedMovies viene resettato 
-            searchMovie(){
+            search(){
               if(this.searchedMovie.length > 0){
                   this.searchedMovie = [];
               }
@@ -30,8 +32,26 @@ var root = new Vue(
                             }
                         )
                     }
-                    this.inputValue = '';
                 })
+                if(this.searchedTvShow.length > 0){
+                    this.searchedTvShow = [];
+                }
+                axios
+                    .get(`https://api.themoviedb.org/3/search/tv?api_key=dc214cd2641489a88b535ac4bc3a1dbc&query=${this.inputValue}`)
+                    .then((response)=>{
+                        let result = response.data.results;
+                        for(var i = 0; i < result.length; i++){
+                            this.searchedTvShow.push(
+                                {
+                                    title: result[i].name,
+                                    originalTitle: result[i].original_name,
+                                    language: result[i].original_language,
+                                    vote: result[i].vote_average 
+                                }
+                            )
+                        }                        
+                    })
+                    this.inputValue = '';
             }
         },
         mounted(){

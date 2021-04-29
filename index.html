@@ -20,7 +20,7 @@
             v-model="inputValue" 
             type="text">
             <button
-            @click="searchMovie">Search Movie</button>
+            @click="search">Search Movie</button>
         </div>
         <!--End Searchbar-->
 
@@ -49,6 +49,12 @@
              <img
              v-else-if="element.language =='zh'"
              src="img/china.png" alt="china"> 
+             <img
+             v-else-if="element.language =='ja'"
+             src="img/japan.png" alt="japan">
+             <img
+             v-else-if="element.language =='ko'"
+             src="img/south-korea.png" alt="south-korea">
             <p           
              v-else
             >Language: {{element.language}}</p>
@@ -57,12 +63,48 @@
         </div>
         <!--End Movie card-->
 
+        <!---TvShow Card TEST-->
+        <div
+        class="tv-show-card"
+         v-for="element in searchedTvShow">
+            <p>Title: {{element.title}}</p>
+            <p>Original Title: {{element.originalTitle}}</p>
+            <!--Flags(languages)-->
+            <img
+             v-if="element.language == 'it'"
+             src="img/italy.png" alt="italy">
+            <img
+             v-else-if="element.language == 'en' "
+             src="img/united-states.png" alt="united-states">
+            <img
+             v-else-if="element.language =='fr'"
+             src="img/france.png" alt="france">
+            <img
+             v-else-if="element.language =='es'"
+             src="img/spain.png" alt="spain">
+            <img
+             v-else-if="element.language =='de'"
+             src="img/germany.png" alt="germany">
+             <img
+             v-else-if="element.language =='zh'"
+             src="img/china.png" alt="china"> 
+             <img
+             v-else-if="element.language =='ja'"
+             src="img/japan.png" alt="japan">
+             <img
+             v-else-if="element.language =='ko'"
+             src="img/south-korea.png" alt="south-korea">
+            <p           
+             v-else
+            >Language: {{element.language}}</p>
+            <!--End Flags(languages)-->
+            <p>Vote: {{element.vote}}</p>            
+        </div>
+        <!--End TvShow card-->
+
     </div>
     <!--END ROOT-->
 
     <script src="js/script.js"></script>
 </body>
 </html>
-<!--Trasformiamo la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente,
- gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API (le flag non ci sono in FontAwesome).
--->
