@@ -27,7 +27,10 @@
         <!---Movie Card TEST-->
         <div
         class="movie-card"
-         v-for="element in searchedMovie">
+         v-for="element in searchedMovie"> 
+            <img
+             v-if="element.backdrop != null"
+             :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">           
             <p>Title: {{element.title}}</p>
             <p>Original Title: {{element.originalTitle}}</p>
             <!--Flags(languages)-->
@@ -67,6 +70,9 @@
         <div
         class="tv-show-card"
          v-for="element in searchedTvShow">
+            <img 
+            v-if="element.backdrop != null"
+            :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
             <p>Title: {{element.title}}</p>
             <p>Original Title: {{element.originalTitle}}</p>
             <!--Flags(languages)-->

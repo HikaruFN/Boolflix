@@ -28,7 +28,9 @@ var root = new Vue(
                                 title: result[i].title,
                                 originalTitle: result[i].original_title,
                                 language: result[i].original_language,
-                                vote: result[i].vote_average
+                                vote: result[i].vote_average,
+                                backdrop: result[i].backdrop_path
+
                             }
                         )
                     }
@@ -46,12 +48,15 @@ var root = new Vue(
                                     title: result[i].name,
                                     originalTitle: result[i].original_name,
                                     language: result[i].original_language,
-                                    vote: result[i].vote_average 
+                                    vote: result[i].vote_average,
+                                    backdrop: result[i].backdrop_path 
+
                                 }
                             )
                         }                        
                     })
                     this.inputValue = '';
+                    console.log(this.searchedTvShow);
             }
         },
         mounted(){
