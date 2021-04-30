@@ -95,6 +95,14 @@ var root = new Vue(
                 let newNumber = Math.ceil(number / 2); 
                 return newNumber;                
             },
+            //Funzione che converte numeri in stelle
+            fromNumberToStars(number){
+                if(number <= 5){
+                    let star = `<i class="fas fa-star"></i>`;
+                    console.log(star);
+                   return number = star + star;
+                }
+            }
         },
     }
 )
