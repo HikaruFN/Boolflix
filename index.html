@@ -15,51 +15,35 @@
     <!--ROOT-->
     <div id="root">
 
-        <!--Searchbar TEST-->
-        <div>
-            <input
-            v-model="inputValue" 
-            type="text">
-            <button
-            @click="search">Search Movie</button>
-        </div>
-        <!--End Searchbar-->
+        <!--HEADER-->
+        <header>
+            <div class="header-container">
+                <div class="logo-container">
+                    <img src="img/logo.png" alt="logo">
+                </div>
+                <div class="search-bar-container">
+                    <label for="searchbar">SEARCH IN OUR LIBRARY</label>
+                    <input v-model="inputValue" type="text" id="searchbar" placeholder="insert a Movie or TvShow title!">
+                    <button @click="search">Search</button>
+                </div>
+            </div>
+        </header>
+        <!--END HEADER-->
 
-        <!---Movie Card TEST-->
-        <div
-        class="movie-card"
-         v-for="element in searchedMovie"> 
-            <img
-             v-if="element.backdrop != null"
-             :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">           
-            <p>Title: {{element.title}}</p>
-            <p>Original Title: {{element.originalTitle}}</p>
-            <!--Flags(languages)-->
-            <img v-if="supportedLanguages.includes(element.language) "
-            :src="intoFlag(element.language)" alt="element.name">
-            <p v-else>Language: {{element.language}}</p>
-            <!--End Flags(languages)-->
-            <p v-html="fromNumberToStars(numberTransform(element.vote))"></p>            
-        </div>
-        <!--End Movie card-->
-
-        <!---TvShow Card TEST-->
-        <div
-        class="tv-show-card"
-         v-for="element in searchedTvShow">
-            <img 
-            v-if="element.backdrop != null"
-            :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
-            <p>Title: {{element.title}}</p>
-            <p>Original Title: {{element.originalTitle}}</p>
-            <!--Flags(languages)-->
-            <img v-if="supportedLanguages.includes(element.language) "
-            :src="intoFlag(element.language)" alt="element.name">
-            <p v-else>Language: {{element.language}}</p>
-            <!--End Flags(languages)-->
-            <p v-html="fromNumberToStars(numberTransform(element.vote))"></p>            
-        </div>
-        <!--End TvShow card-->
+        <!--MAIN-->
+        <main>
+            <!--Movie Card-->
+            <div class="movie-cards-container">
+                <div
+                    v-for="element in searchedMovie"
+                    class="movie-card">
+                    <img
+                    v-if="element.backdrop != null"
+                    :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
+                </div>
+            </div>
+        </main>
+        <!--END MAIN-->
 
     </div>
     <!--END ROOT-->

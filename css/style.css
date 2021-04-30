@@ -6,18 +6,48 @@
 }
 
 /*COMMON*/
-/*DEBUG*/
 img{
-    width: 40px;
-}
-.movie-card{
-    border: 1px solid;
-    margin: 40px 0;
-}
-.tv-show-card{
-    border: 1px solid red;
-    margin: 40px 0;
+    width: 100%;
 }
 .fas{
-    color: gold;
+    color: #FEBC00;
+}
+.flag{
+    width: 40px;
+}
+/*HEADER*/
+.header-container{
+    padding: 20px;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo-container img{
+    width: 100%;
+}
+.search-bar-container *{
+    margin-left: 15px;
+}
+.search-bar-container input{
+    width: 200px;
+}
+.search-bar-container label{
+    color: red;
+}
+
+/*MAIN*/
+main{
+    height: 100vh;
+    background-color: #434343;
+    padding: 50px 30px;
+}
+/*Movie Card*/
+.movie-cards-container{
+    display: flex;
+}
+.movie-card{
+    margin-left: 50px;
+    width: calc(100% / 6);
+    border: 1px solid white;
 }
