@@ -59,8 +59,10 @@ var root = new Vue(
             },
             //Funzione che trasforma la stringa lingua in una img con la bandiera 
             intoFlag(language){
-                let flag = document.getElementById('flag');
-                console.log(flag);
+               let flag =  document.getElementById('flag').innerHTML;
+               if(language == 'it'){
+                   flag = <img src="img/italy.png" alt="italy"></img>;
+               }                
             },            
             //Funzione che trasforma il numero in un numero compreso fra 1 e 5
             numberTransform(number){
