@@ -2,6 +2,8 @@ var root = new Vue(
     {
         el: '#root',
         data: {
+            //Indice corrente
+            currentIndex: null,
             //Array contenente le lingue supportate
             supportedLanguages: ['it','en','fr','es','de','zh','ja','ko','ru'], //non sono sicuro di questa soluzione
             //contiene il valore del testo legato con v-model alla input
@@ -31,7 +33,8 @@ var root = new Vue(
                                 originalTitle: result[i].original_title,
                                 language: result[i].original_language,
                                 vote: parseInt(result[i].vote_average),
-                                backdrop: result[i].poster_path
+                                backdrop: result[i].poster_path,
+                                hover: false
 
                             }
                         )
@@ -110,6 +113,17 @@ var root = new Vue(
                   return number = "Vote: " + star + star + star + star + star;
                 }
             },
+            changeIndexOnEnter(index){
+              this.currentIndex = index;
+              this.searchedMovie[this.currentIndex].hover = true;
+              console.log(this.currentIndex);
+              console.log(this.searchedMovie[this.currentIndex].hover);
+            },
+            changeIndexOnLeave(){ 
+              this.searchedMovie[this.currentIndex].hover = false;
+              console.log(this.currentIndex);
+              console.log(this.searchedMovie[this.currentIndex].hover);
+            }
         },
     }
 )

@@ -36,16 +36,31 @@
 
         <!--MAIN-->
         <main>
+
             <!--Movie Card-->
             <div class="movie-cards-container">
+
+
                 <div
+                    @mouseover="changeIndexOnEnter(index)"
+                    @mouseleave="changeIndexOnLeave()"
                     v-for="(element, index) in searchedMovie"
                     class="movie-card">
                     <!--Poster-->
-                    <img   
+                    <img  
+                     v-if="element.hover == false"   
                      :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
                     <!--End Poster-->
+                    <div
+                     
+                     v-else>
+                     <img    
+                     :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
+                    </div>
                 </div>
+                
+                    
+                
             </div>
         </main>
         <!--END MAIN-->
