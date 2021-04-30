@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Boolfix</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
@@ -34,7 +35,7 @@
             <p>Title: {{element.title}}</p>
             <p>Original Title: {{element.originalTitle}}</p>
             <!--Flags(languages)-->
-            <p id="flag">Language: {{element.language}}</p>
+            <p id="flag">Language: {{intoFlag(element.language)}}</p>
             <!--End Flags(languages)-->
             <p>Vote: {{numberTransform(element.vote)}}</p>            
         </div>
@@ -50,12 +51,12 @@
             <p>Title: {{element.title}}</p>
             <p>Original Title: {{element.originalTitle}}</p>
             <!--Flags(languages)-->
-            <p id="flag">Language: {{element.language}}</p>
+            <p id="flag">Language: {{intoFlag(element.language)}}</p>
             <!--End Flags(languages)-->
             <p>Vote: {{numberTransform(element.vote)}}</p>            
         </div>
         <!--End TvShow card-->
-        
+
     </div>
     <!--END ROOT-->
 
