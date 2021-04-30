@@ -97,12 +97,19 @@ var root = new Vue(
             },
             //Funzione che converte numeri in stelle
             fromNumberToStars(number){
-                if(number <= 5){
-                    let star = `<i class="fas fa-star"></i>`;
-                    console.log(star);
-                   return number = star + star;
+              let star = '<i class="fas fa-star"></i>';
+                if(number <= 0 && number <= 1){                    
+                   return number = "Vote: " + star;
+                }else if(number == 2){
+                  return number = "Vote: " + star + star;
+                }else if(number == 3){
+                  return number = "Vote: " + star + star + star;
+                }else if(number == 4){
+                  return number = "Vote: " + star + star + star + star;
+                }else if(number == 5){
+                  return number = "Vote: " + star + star + star + star + star;
                 }
-            }
+            },
         },
     }
 )
