@@ -33,6 +33,7 @@ var root = new Vue(
                                 originalTitle: result[i].original_title,
                                 language: result[i].original_language,
                                 vote: parseInt(result[i].vote_average),
+                                plot: result[i].overview,
                                 backdrop: result[i].poster_path,
                                 hover: false
 
@@ -54,7 +55,9 @@ var root = new Vue(
                                     originalTitle: result[i].original_name,
                                     language: result[i].original_language,
                                     vote: parseInt(result[i].vote_average),
-                                    backdrop: result[i].poster_path
+                                    plot: result[i].overview,
+                                    backdrop: result[i].poster_path,
+                                    hover: false
 
                                 }
                             )
@@ -123,7 +126,11 @@ var root = new Vue(
               this.searchedMovie[this.currentIndex].hover = false;
               console.log(this.currentIndex);
               console.log(this.searchedMovie[this.currentIndex].hover);
-            }
+            },
+            cutString(string){
+              let thisString = string.slice(0, 200);
+              return thisString = thisString + '...';
+          },
         },
     }
 )

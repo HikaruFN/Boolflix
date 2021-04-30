@@ -37,10 +37,12 @@
         <!--MAIN-->
         <main>
 
+            <!--Movies Section-->
+            <div v-if="searchedMovie.length > 0" class="movie-section-logo-container">
+                <img src="img/movies.png" alt="movies">
+            </div>
             <!--Movie Card-->
             <div class="movie-cards-container">
-
-
                 <div
                     @mouseover="changeIndexOnEnter(index)"
                     @mouseleave="changeIndexOnLeave()"
@@ -51,17 +53,55 @@
                      v-if="element.hover == false"   
                      :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
                     <!--End Poster-->
+
+                    <!--Hidden Movie Info-->
                     <div
-                     
+                     class="movie-info-container"
                      v-else>
-                     <img    
-                     :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
+                     <span><b>Title</b>: {{element.title}}</span>
+                     <span v-if="element.title != element.originalTitle"><b>Original Title</b>: {{element.originalTitle}}</span>
+                     <span v-html="fromNumberToStars(numberTransform(element.vote))"><b>Vote</b>:</span> <!--POI LEGGI V-HTML-->
+                     <span v-if="element.plot.length > 0"><b>Overview</b>: {{cutString(element.plot)}}</span>
+                     <span><b>Language:  </b><img v-if="supportedLanguages.includes(element.language)" :src="intoFlag(element.language)" :alt="element.language"></span>
+                     <span v-else><b>Language</b>: {{element.Language}}</span>
                     </div>
-                </div>
-                
-                    
-                
+                     <!--End Hidden Movie Info-->
+                </div>                   
             </div>
+            <!--End Movies Section-->
+
+            <!--TV Shows Section-->
+            <div v-if="searchedTvShow.length > 0" class="tvshow-section-logo-container">
+                <img src="img/tv-shows.png" alt="tv-shows">
+            </div> 
+            <!--TV Show Card-->
+            <div class="tvshow-cards-container">
+                <div
+                    @mouseover="changeIndexOnEnter(index)"
+                    @mouseleave="changeIndexOnLeave()"
+                    v-for="(element, index) in searchedTvShow"
+                    class="tvshow-card">
+                    <!--Poster-->
+                    <img  
+                     v-if="element.hover == false"   
+                     :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
+                    <!--End TV Show Card-->
+                      <!--Hidden Movie Info-->
+                      <div
+                      class="tvshow-info-container"
+                      v-else>
+                      <span><b>Title</b>: {{element.title}}</span>
+                      <span v-if="element.title != element.originalTitle"><b>Original Title</b>: {{element.originalTitle}}</span>
+                      <span v-html="fromNumberToStars(numberTransform(element.vote))"><b>Vote</b>:</span> <!--POI LEGGI V-HTML-->
+                      <span v-if="element.plot.length > 0"><b>Overview</b>: {{cutString(element.plot)}}</span>
+                      <span><b>Language:  </b><img v-if="supportedLanguages.includes(element.language)" :src="intoFlag(element.language)" :alt="element.language"></span>
+                      <span v-else><b>Language</b>: {{element.Language}}</span>
+                     </div>
+                      <!--End Hidden Movie Info-->
+                 </div>                   
+             </div>
+             <!--End TV Shows Section--> 
+
         </main>
         <!--END MAIN-->
 
