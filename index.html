@@ -35,7 +35,9 @@
             <p>Title: {{element.title}}</p>
             <p>Original Title: {{element.originalTitle}}</p>
             <!--Flags(languages)-->
-            <p id="flag">Language: {{intoFlag(element.language)}}</p>
+            <img v-if="supportedLanguages.includes(element.language) "
+            :src="intoFlag(element.language)" alt="element.name">
+            <p v-else>Language: {{element.language}}</p>
             <!--End Flags(languages)-->
             <p>Vote: {{numberTransform(element.vote)}}</p>            
         </div>
@@ -51,7 +53,9 @@
             <p>Title: {{element.title}}</p>
             <p>Original Title: {{element.originalTitle}}</p>
             <!--Flags(languages)-->
-            <p id="flag">Language: {{intoFlag(element.language)}}</p>
+            <img v-if="supportedLanguages.includes(element.language) "
+            :src="intoFlag(element.language)" alt="element.name">
+            <p v-else>Language: {{element.language}}</p>
             <!--End Flags(languages)-->
             <p>Vote: {{numberTransform(element.vote)}}</p>            
         </div>

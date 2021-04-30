@@ -2,6 +2,8 @@ var root = new Vue(
     {
         el: '#root',
         data: {
+            //Array contenente le lingue supportate
+            supportedLanguages: ['it','en','fr','es','de','zh','ja','ko','ru'], //non sono sicuro di questa soluzione
             //contiene il valore del testo legato con v-model alla input
             inputValue: 'la vita è bella',    
             //Array contenente film cercato 
@@ -57,13 +59,37 @@ var root = new Vue(
                     })
                     this.inputValue = '';
             },
-            //Funzione che trasforma la stringa lingua in una img con la bandiera 
+            //Funzione che trasforma restituisce l'url della bandiera legata alla lingua del Film/SerieTV 
             intoFlag(language){
-               let flag =  document.getElementById('flag').innerHTML;
-               if(language == 'it'){
-                   flag = `<img src="img/italy.png" alt="italy"></img>`;
-               }                
-            },            
+              if(language == 'it'){
+                let flagUrl = "img/italy.png";              
+                return flagUrl;
+              }else if(language =='en'){
+                flagUrl = "img/united-states.png"
+                return flagUrl;
+              }else if(language =='fr'){
+                flagUrl = "img/france.png";
+                return flagUrl; 
+              }else if(language == 'es'){
+                flagUrl = "img/spain.png";
+                return flagUrl;
+              }else if(language == 'de'){
+                flagUrl = "img/germany.png";
+                return flagUrl;
+              }else if(language == 'zh'){
+                flagUrl = "img/china.png";
+                return flagUrl;
+              }else if(language == 'ja'){
+                flagUrl = "img/japan.png";
+                return flagUrl;
+              }else if(language == 'ko'){
+                flagUrl = "img/south-korea.png";
+                return flagUrl;
+              }else if(language == 'ru'){
+                flagUrl = "img/russia.png";
+                return flagUrl;
+              }             
+            }, 
             //Funzione che trasforma il numero in un numero compreso fra 1 e 5
             numberTransform(number){
                 let newNumber = Math.ceil(number / 2); 
