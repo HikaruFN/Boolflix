@@ -18,14 +18,18 @@
         <!--HEADER-->
         <header>
             <div class="header-container">
+                <!--Logo-->
                 <div class="logo-container">
                     <img src="img/logo.png" alt="logo">
                 </div>
+                <!--End Logo-->
+                <!--Search bar-->
                 <div class="search-bar-container">
                     <label for="searchbar">SEARCH IN OUR LIBRARY</label>
                     <input v-model="inputValue" type="text" id="searchbar" placeholder="insert a Movie or TvShow title!">
                     <button @click="search">Search</button>
                 </div>
+                <!--End Search bar-->
             </div>
         </header>
         <!--END HEADER-->
@@ -35,13 +39,12 @@
             <!--Movie Card-->
             <div class="movie-cards-container">
                 <div
-                    @mouseenter="hover = true"
-                    @mouseleave="hover = false"
-                    v-for="element in searchedMovie"
+                    v-for="(element, index) in searchedMovie"
                     class="movie-card">
-                    <img
-                     v-if="hover == false"   
+                    <!--Poster-->
+                    <img   
                      :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
+                    <!--End Poster-->
                 </div>
             </div>
         </main>
