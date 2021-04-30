@@ -35,11 +35,13 @@
             <!--Movie Card-->
             <div class="movie-cards-container">
                 <div
+                    @mouseover="hover = true"
+                    @mouseleave="hover = false"
                     v-for="element in searchedMovie"
                     class="movie-card">
                     <img
-                    v-if="element.backdrop != null"
-                    :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
+                     v-if="hover == false"   
+                     :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
                 </div>
             </div>
         </main>

@@ -2,6 +2,8 @@ var root = new Vue(
     {
         el: '#root',
         data: {
+            //OnHover
+            hover: false,
             //Array contenente le lingue supportate
             supportedLanguages: ['it','en','fr','es','de','zh','ja','ko','ru'], //non sono sicuro di questa soluzione
             //contiene il valore del testo legato con v-model alla input
