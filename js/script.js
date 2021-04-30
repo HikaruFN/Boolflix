@@ -3,7 +3,7 @@ var root = new Vue(
         el: '#root',
         data: {
             //contiene il valore del testo legato con v-model alla input
-            inputValue: '',    
+            inputValue: 'la vita è bella',    
             //Array contenente film cercato 
             searchedMovie: [],
             //Array contenente Serie-TV cercata     
@@ -56,25 +56,20 @@ var root = new Vue(
                         }                        
                     })
                     this.inputValue = '';
-                    console.log(this.searchedTvShow);
             },
+            //Funzione che trasforma la stringa lingua in una img con la bandiera 
+            intoFlag(language){
+                let flag = document.getElementById('flag');
+                console.log(flag);
+            },            
             //Funzione che trasforma il numero in un numero compreso fra 1 e 5
             numberTransform(number){
-                if(number >= 0 && number <= 2 ){
-                    return number = 1;
-                }else if(number >= 3 && number <= 5){
-                    return number = 2;
-                }else if(number >= 5 && number <= 7){
-                    return number = 3;
-                }else if(number >= 8 && number <= 9){
-                    return number = 4;
-                }else if(number == 10){
-                    return number = 5;
-                }                    
-            }
+                let newNumber = Math.ceil(number / 2); 
+                return newNumber;                
+            },
         },
-        mounted(){
-        }
     }
 )
+
+
 
