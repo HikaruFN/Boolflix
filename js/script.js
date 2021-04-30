@@ -70,8 +70,7 @@ var root = new Vue(
                     return number = 4;
                 }else if(number == 10){
                     return number = 5;
-                }
-                    
+                }                    
             }
         },
         mounted(){
