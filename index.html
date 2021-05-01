@@ -25,7 +25,7 @@
                 <!--End Logo-->
                 <!--Search bar-->
                 <div class="search-bar-container">
-                    <label for="searchbar">SEARCH IN OUR LIBRARY</label>
+                    <img src="img/library.png" alt="library">
                     <input v-model="inputValue" type="text" id="searchbar" placeholder="insert a Movie or TvShow title!">
                     <button @click="search">Search</button>
                 </div>
@@ -44,16 +44,15 @@
             <!--Movie Card-->
             <div class="movie-cards-container">
                 <div
-                    @mouseover="changeIndexOnEnter(index)"
-                    @mouseleave="changeIndexOnLeave()"
+                    @mouseover="changeIndexOnEnter( searchedMovie,index)"
+                    @mouseleave="changeIndexOnLeave(searchedMovie)"
                     v-for="(element, index) in searchedMovie"
                     class="movie-card">
                     <!--Poster-->
                     <img  
                      v-if="element.hover == false"   
                      :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
-                    <!--End Poster-->
-
+                    <!--End Poster--> 
                     <!--Hidden Movie Info-->
                     <div
                      class="movie-info-container"
@@ -77,8 +76,8 @@
             <!--TV Show Card-->
             <div class="tvshow-cards-container">
                 <div
-                    @mouseover="changeIndexOnEnter(index)"
-                    @mouseleave="changeIndexOnLeave()"
+                    @mouseover="changeIndexOnEnter( searchedTvShow,index)"
+                    @mouseleave="changeIndexOnLeave(searchedTvShow)"
                     v-for="(element, index) in searchedTvShow"
                     class="tvshow-card">
                     <!--Poster-->

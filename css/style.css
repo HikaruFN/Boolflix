@@ -24,15 +24,20 @@
 .logo-container img{
     width: 100%;
 }
+.search-bar-container{
+    display: flex;
+    align-items: center;
+}
 .search-bar-container *{
     margin-left: 15px;
+}
+.search-bar-container img{
+    width: 200px;
 }
 .search-bar-container input{
     width: 200px;
 }
-.search-bar-container label{
-    color: red;
-}
+
 
 /*MAIN*/
 main{

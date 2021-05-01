@@ -7,7 +7,7 @@ var root = new Vue(
             //Array contenente le lingue supportate
             supportedLanguages: ['it','en','fr','es','de','zh','ja','ko','ru'], //non sono sicuro di questa soluzione
             //contiene il valore del testo legato con v-model alla input
-            inputValue: 'la vita è bella',    
+            inputValue: 'lost',    
             //Array contenente film cercato 
             searchedMovie: [],
             //Array contenente Serie-TV cercata     
@@ -116,17 +116,20 @@ var root = new Vue(
                   return number = "Vote: " + star + star + star + star + star;
                 }
             },
-            changeIndexOnEnter(index){
+            //Funzione legata al mouse enter, cambia indice corrente =>currentIndex e cambia lo stato dell' hover dell'elemento con indice attivo in true
+            changeIndexOnEnter(array, index){
               this.currentIndex = index;
-              this.searchedMovie[this.currentIndex].hover = true;
+              array[this.currentIndex].hover = true;
               console.log(this.currentIndex);
-              console.log(this.searchedMovie[this.currentIndex].hover);
+              console.log(array[this.currentIndex].hover);
             },
-            changeIndexOnLeave(){ 
-              this.searchedMovie[this.currentIndex].hover = false;
+            //Funzione legata al mouseleave che ambia lo stato dell' hover dell'elemento con indice attivo in false
+            changeIndexOnLeave(array){ 
+              array[this.currentIndex].hover = false;
               console.log(this.currentIndex);
-              console.log(this.searchedMovie[this.currentIndex].hover);
+              console.log(array[this.currentIndex].hover);
             },
+            //Funzione che limita la stringa a 200 caratteri
             cutString(string){
               let thisString = string.slice(0, 200);
               return thisString = thisString + '...';
