@@ -38,17 +38,22 @@ var root = new Vue(
                                 backdrop: result[i].poster_path,
                                 hover: false,
                                 id: result[i].id,
+                                genders: [],
                                 actors:[]
                             }
                         )
                     }
                     //Prelevo i primo 5 nomi degli attori del cast dei film e li pusho nel valore della chiave => actors di =>searchedMovie
+                    //Saranno prelevati anche i valori dei generi (senza duplicati) e pushato nel valore della chiave =>genders
                     this.searchedMovie.forEach((element)=>{
                       axios
                        .get(`https://api.themoviedb.org/3/movie/${element.id}/credits?api_key=dc214cd2641489a88b535ac4bc3a1dbc`)
                        .then((response)=>{
                          let cast =(response.data.cast);
-                         for( var i = 0; i < cast.length; i++){      
+                         for( var i = 0; i < cast.length; i++){  
+                           if(!element.genders.includes(cast[i].gender)){
+                           element.genders.push(cast[i].gender);   
+                           } 
                            if(element.actors.length < 5){
                               element.actors.push(cast[i].name);
                            }
@@ -75,17 +80,22 @@ var root = new Vue(
                                     backdrop: result[i].poster_path,
                                     hover: false,
                                     id: result[i].id,
+                                    genders: [],
                                     actors:[]
                                 }
                             )
                         }       
                         //Prelevo i primo 5 nomi degli attori del cast dei film e li pusho nel valore della chiave => actors di =>searchedTvShow
+                        //Saranno prelevati anche i valori dei generi (senza duplicati) e pushato nel valore della chiave =>genders
                     this.searchedTvShow.forEach((element)=>{
                       axios
                        .get(`https://api.themoviedb.org/3/movie/${element.id}/credits?api_key=dc214cd2641489a88b535ac4bc3a1dbc`)
                        .then((response)=>{
                          let cast =(response.data.cast);
-                         for( var i = 0; i < cast.length; i++){      
+                         for( var i = 0; i < cast.length; i++){ 
+                          if(!element.genders.includes(cast[i].gender)){
+                            element.genders.push(cast[i].gender);   
+                           }      
                            if(element.actors.length < 5){
                               element.actors.push(cast[i].name);
                            }

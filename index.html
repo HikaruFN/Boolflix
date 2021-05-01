@@ -67,6 +67,8 @@
                      <span v-if="element.plot.length > 0"><b>Overview</b>: {{cutString(element.plot)}}</span>
                      <!--Actors-->
                      <span v-if="element.actors.length > 0"><b>Actors</b>: {{element.actors[0]}}, {{element.actors[1]}}, {{element.actors[2]}}, {{element.actors[3]}}, {{element.actors[4]}}</span> <!--DA RIVEDERE-->
+                     <!--Gender-->
+                     <span v-if="element.genders.length > 0"><b>Gender</b><span v-for="gender in element.genders">{{gender}},</span></span>
                     </div>
                      <!--End Hidden Movie Info-->
                 </div>                   
@@ -103,6 +105,8 @@
                       <span v-if="element.plot.length > 0"><b>Overview</b>: {{cutString(element.plot)}}</span>
                       <!--Actors-->
                       <span v-if="element.actors.length > 0"><b>Actors</b>: {{element.actors[0]}}, {{element.actors[1]}}, {{element.actors[2]}}, {{element.actors[3]}}, {{element.actors[4]}}</span> <!--DA RIVEDERE-->
+                      <!--Gender-->
+                      <span v-if="element.genders.length > 0"><b>Gender</b><span v-for="gender in element.genders">{{gender}},</span></span>
                      </div>
                       <!--End Hidden Movie Info-->
                  </div>                   
