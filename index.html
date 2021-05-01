@@ -57,12 +57,16 @@
                     <div
                      class="movie-info-container"
                      v-else>
+                     <!--Title-->
                      <span><b>Title</b>: {{element.title}}</span>
+                     <!--Original Title-->
                      <span v-if="element.title != element.originalTitle"><b>Original Title</b>: {{element.originalTitle}}</span>
+                     <!--Vote-->
                      <span v-html="fromNumberToStars(numberTransform(element.vote))"><b>Vote</b>:</span> <!--POI LEGGI V-HTML-->
+                     <!--Plot-->
                      <span v-if="element.plot.length > 0"><b>Overview</b>: {{cutString(element.plot)}}</span>
-                     <span><b>Language:  </b><img v-if="supportedLanguages.includes(element.language)" :src="intoFlag(element.language)" :alt="element.language"></span>
-                     <span v-else><b>Language</b>: {{element.Language}}</span>
+                     <!--Actors-->
+                     <span v-if="element.actors.length > 0"><b>Actors</b>: {{element.actors[0]}}, {{element.actors[1]}}, {{element.actors[2]}}, {{element.actors[3]}}, {{element.actors[4]}}</span> <!--DA RIVEDERE-->
                     </div>
                      <!--End Hidden Movie Info-->
                 </div>                   
@@ -89,12 +93,16 @@
                       <div
                       class="tvshow-info-container"
                       v-else>
+                      <!--Title-->
                       <span><b>Title</b>: {{element.title}}</span>
+                      <!--Original Title-->
                       <span v-if="element.title != element.originalTitle"><b>Original Title</b>: {{element.originalTitle}}</span>
+                      <!--Vote-->
                       <span v-html="fromNumberToStars(numberTransform(element.vote))"><b>Vote</b>:</span> <!--POI LEGGI V-HTML-->
+                      <!--Plot-->
                       <span v-if="element.plot.length > 0"><b>Overview</b>: {{cutString(element.plot)}}</span>
-                      <span><b>Language:  </b><img v-if="supportedLanguages.includes(element.language)" :src="intoFlag(element.language)" :alt="element.language"></span>
-                      <span v-else><b>Language</b>: {{element.Language}}</span>
+                      <!--Actors-->
+                      <span v-if="element.actors.length > 0"><b>Actors</b>: {{element.actors[0]}}, {{element.actors[1]}}, {{element.actors[2]}}, {{element.actors[3]}}, {{element.actors[4]}}</span> <!--DA RIVEDERE-->
                      </div>
                       <!--End Hidden Movie Info-->
                  </div>                   

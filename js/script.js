@@ -7,7 +7,7 @@ var root = new Vue(
             //Array contenente le lingue supportate
             supportedLanguages: ['it','en','fr','es','de','zh','ja','ko','ru'], //non sono sicuro di questa soluzione
             //contiene il valore del testo legato con v-model alla input
-            inputValue: 'lost',    
+            inputValue: 'digimon',//ALLA FINE RICORDATI DI SVUOTRARE LA STRINGA    
             //Array contenente film cercato 
             searchedMovie: [],
             //Array contenente Serie-TV cercata     
@@ -22,6 +22,7 @@ var root = new Vue(
               if(this.searchedMovie.length > 0){
                   this.searchedMovie = [];
               }
+              //
               axios
                 .get(`https://api.themoviedb.org/3/search/movie?api_key=dc214cd2641489a88b535ac4bc3a1dbc&query=${this.inputValue}`)//BISOGNA CAPIRE LA SINTASSI
                 .then((response)=>{
@@ -35,12 +36,27 @@ var root = new Vue(
                                 vote: parseInt(result[i].vote_average),
                                 plot: result[i].overview,
                                 backdrop: result[i].poster_path,
-                                hover: false
-
+                                hover: false,
+                                id: result[i].id,
+                                actors:[]
                             }
                         )
                     }
-                })
+                    //Prelevo i primo 5 nomi degli attori del cast dei film e li pusho nel valore della chiave => actors di =>searchedMovie
+                    this.searchedMovie.forEach((element)=>{
+                      axios
+                       .get(`https://api.themoviedb.org/3/movie/${element.id}/credits?api_key=dc214cd2641489a88b535ac4bc3a1dbc`)
+                       .then((response)=>{
+                         let cast =(response.data.cast);
+                         for( var i = 0; i < cast.length; i++){      
+                           if(element.actors.length < 5){
+                              element.actors.push(cast[i].name);
+                           }
+                         }
+                        })
+                    })
+                })    
+                //Se l'array=>searchedTvShow è già occupato al rinnovo della funzione, l'array =>searchedTvShow viene resettato
                 if(this.searchedTvShow.length > 0){
                     this.searchedTvShow = [];
                 }
@@ -57,12 +73,27 @@ var root = new Vue(
                                     vote: parseInt(result[i].vote_average),
                                     plot: result[i].overview,
                                     backdrop: result[i].poster_path,
-                                    hover: false
-
+                                    hover: false,
+                                    id: result[i].id,
+                                    actors:[]
                                 }
                             )
-                        }                        
-                    })
+                        }       
+                        //Prelevo i primo 5 nomi degli attori del cast dei film e li pusho nel valore della chiave => actors di =>searchedTvShow
+                    this.searchedTvShow.forEach((element)=>{
+                      axios
+                       .get(`https://api.themoviedb.org/3/movie/${element.id}/credits?api_key=dc214cd2641489a88b535ac4bc3a1dbc`)
+                       .then((response)=>{
+                         let cast =(response.data.cast);
+                         for( var i = 0; i < cast.length; i++){      
+                           if(element.actors.length < 5){
+                              element.actors.push(cast[i].name);
+                           }
+                         }
+                        })
+                    })                 
+                  })
+                    //Reset contenuto => inputValue
                     this.inputValue = '';
             },
             //Funzione che trasforma restituisce l'url della bandiera legata alla lingua del Film/SerieTV 
@@ -120,14 +151,10 @@ var root = new Vue(
             changeIndexOnEnter(array, index){
               this.currentIndex = index;
               array[this.currentIndex].hover = true;
-              console.log(this.currentIndex);
-              console.log(array[this.currentIndex].hover);
             },
             //Funzione legata al mouseleave che ambia lo stato dell' hover dell'elemento con indice attivo in false
             changeIndexOnLeave(array){ 
               array[this.currentIndex].hover = false;
-              console.log(this.currentIndex);
-              console.log(array[this.currentIndex].hover);
             },
             //Funzione che limita la stringa a 200 caratteri
             cutString(string){
