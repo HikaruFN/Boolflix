@@ -39,12 +39,12 @@
 
             <!--Gender List-->
             <div 
-            v-if=" searchedMovie.length > 0 || searchedTvShow.length > 0"
+            v-if=" searchedMovie.length > 0"
             class="gender-list-container">
                 <ul class=>
                     <li 
-                    @click="filterForGender(index)"
-                    v-for="(element, index) in gendersList"><b>{{element.name}}{{index}}</b></li>
+                    @click="filterForGender(searchedMovie, index)"
+                    v-for="(element, index) in gendersList"><b>{{element.name}}</b></li>
                 </ul>
             </div>
             <!--End Gender List-->
@@ -87,6 +87,18 @@
                 </div>                   
             </div>
             <!--End Movies Section-->
+
+             <!--Gender List-->
+             <div 
+             v-if=" searchedTvShow.length > 0"
+             class="gender-list-container">
+                 <ul class=>
+                     <li 
+                     @click="filterForGender(searchedTvShow, index)"
+                     v-for="(element, index) in gendersList"><b>{{element.name}}</b></li>
+                 </ul>
+             </div>
+             <!--End Gender List-->
 
             <!--TV Shows Section-->
             <div v-if="searchedTvShow.length > 0" class="tvshow-section-logo-container">

@@ -81,14 +81,17 @@ main{
 }
 /*Genders List*/
 .gender-list-container{
-    margin-bottom: 40px;
+    margin: 50px 0;
     border-bottom: 2px solid;
-    padding-bottom: 40px;
+    border-top: 2px solid;
+    padding: 50px 0;
+    background-color: rgba(black, black, black, 0.5);
 }
 .gender-list-container ul{
     list-style: none;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .gender-list-container ul li{
     margin-left: 5px;

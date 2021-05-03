@@ -2,6 +2,8 @@ var root = new Vue(
     {
         el: '#root',
         data: {
+            //API_KEY
+            apiKey: "dc214cd2641489a88b535ac4bc3a1dbc",
             //Indice corrente
             currentIndex: null,
             //Array contenente le lingue supportate
@@ -24,7 +26,12 @@ var root = new Vue(
               this.searchedMovie = [];
               //Interrogo l'API per cercare un film con lo stesso valore di =>inputValue e pushare nell'array =>searcheMovie per ogni risultato un oggetto contenente diverse info
               axios
-                .get(`https://api.themoviedb.org/3/search/movie?api_key=dc214cd2641489a88b535ac4bc3a1dbc&query=${this.inputValue}`)
+                .get("https://api.themoviedb.org/3/search/movie",{
+                  params:{
+                    api_key: this.apiKey,
+							        query: this.inputValue
+                  }
+                })
                 .then((response)=>{
                     let result = response.data.results;
                     for( var i = 0; i < result.length; i++){
@@ -53,7 +60,12 @@ var root = new Vue(
                 this.searchedTvShow = [];
                 //Interrogo l'API per cercare un film con lo stesso valore di =>inputValue e pushare nell'array =>searcheTvShow per ogni risultato un oggetto contenente diverse info
                 axios
-                    .get(`https://api.themoviedb.org/3/search/tv?api_key=dc214cd2641489a88b535ac4bc3a1dbc&query=${this.inputValue}`)
+                    .get("https://api.themoviedb.org/3/search/tv",{
+                      params:{
+                          api_key: this.apiKey,
+                          query: this.inputValue
+                      }
+                    })
                     .then((response)=>{
                         let result = response.data.results;
                         for(var i = 0; i < result.length; i++){
@@ -76,18 +88,16 @@ var root = new Vue(
                         }       
                         //Prelevo i primo 5 nomi degli attori del cast dei film e li pusho nel valore della chiave => actors di =>searchedTvShow
                         //Saranno prelevati anche i valori dei generi (senza duplicati) e pushato nel valore della chiave =>genders
-                        this.getCastAndGenders(this.searchedTvShow);     
-                        console.log(this.searchedMovie[0]);
-                        console.log(this.searchedTvShow); 
-                        console.log(this.gendersList);         
+                        this.getCastAndGenders(this.searchedTvShow);            
                   })
                     //Reset contenuto => inputValue
                     this.inputValue = '';
             },
             //Funzione che trasforma restituisce l'url della bandiera legata alla lingua del Film/SerieTV 
             intoFlag(language){
+              let flagUrl;
               if(language == 'it'){
-                let flagUrl = "img/italy.png";              
+                flagUrl = "img/it.png";              
                 return flagUrl;
               }else if(language =='en'){
                 flagUrl = "img/united-states.png"
@@ -113,7 +123,7 @@ var root = new Vue(
               }else if(language == 'ru'){
                 flagUrl = "img/russia.png";
                 return flagUrl;
-              }             
+              } 
             }, 
             //Funzione che trasforma il numero in un numero compreso fra 1 e 5
             numberTransform(number){
@@ -167,20 +177,25 @@ var root = new Vue(
                   })
             })
           },
-          //
-          filterForGender(index){
-            for(var i = 0; i < this.searchedMovie.length; i++){
-              if(this.searchedMovie[i].gendersId.includes(this.gendersId[index].id)){
-                console.log(this.searchedMovie)
+          //Funzione che filtra per genere gli elementi dell'array gestendone la visibilità
+          filterForGender(array, index){
+            for(var i = 0; i < array.length; i++){
+              if(!array[i].gendersId.includes(this.gendersList[index].id)){
+                array[i].visibility = false;
+              }else{
+                array[i].visibility = true;
               }
             }
           },
-          //
         },
         mounted(){
           //Interrogo l'API per prelevare le Info sui generi disponibili e li pusho nell'array =>gendersList;
           axios
-            .get(`https://api.themoviedb.org/3/genre/movie/list?api_key=dc214cd2641489a88b535ac4bc3a1dbc`)
+            .get("https://api.themoviedb.org/3/genre/movie/list",{
+              params:{
+                api_key: this.apiKey
+              }
+            })
             .then((response)=>{
               let genres = response.data.genres;
               genres.forEach((element)=>{
