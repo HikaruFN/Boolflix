@@ -63,7 +63,7 @@
                     class="movie-card">
                     <!--Poster-->
                     <img  
-                     v-if="element.hover == false"   
+                     v-if="element.hover == false && element.backdrop != null"   
                      :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
                     <!--End Poster--> 
                     <!--Hidden Movie Info-->
@@ -114,7 +114,7 @@
                     class="tvshow-card">
                     <!--Poster-->
                     <img  
-                     v-if="element.hover == false"   
+                     v-if="element.hover == false && element.backdrop != null"   
                      :src="`https://image.tmdb.org/t/p/w342${element.backdrop}`" :alt="element.title">
                     <!--End TV Show Card-->
                       <!--Hidden Movie Info-->

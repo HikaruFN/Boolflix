@@ -39,6 +39,7 @@ var root = new Vue(
                     //Saranno prelevati anche i valori dei generi (senza duplicati) e pushato nel valore della chiave =>genders
                     this.getCastAndGenders(this.searchedMovie); 
                 })    
+                console.log(this.searchedMovie);
                 //Reset dell'array =>searcheTvShow ad ogni avvio della funzione =>search 
                 this.searchedTvShow = [];
                 //Interrogo l'API per cercare un film con lo stesso valore di =>inputValue
