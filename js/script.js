@@ -16,13 +16,10 @@ var root = new Vue(
         methods: {
             //Funzione =>search che interroga l'api =>themoviedb per ricevere le informazioni riguardanti il film con titolo uguale a quello ricevuto da =>inputValue
             //preleva le informazioni necessarie e le pusha nell'array =>searchedMovies
-            //Al termine il valore di input value viene resettato
-            //Se l'array=>searchedMovies è già occupato al rinnovo della funzione, l'array =>searchedMovies viene resettato 
+            //Al termine il valore di input value viene resettato 
             search(){
-              //FUNZIONE PROVA
-              
-              this.searchedMovie = cleanArray(this.searchedMovie);
-              //FUNZIONE PROVA
+              //Reset dell'array =>searchedMovie ad ogni avvio della funzione =>search 
+              this.searchedMovie = [];
               //
               axios
                 .get(`https://api.themoviedb.org/3/search/movie?api_key=dc214cd2641489a88b535ac4bc3a1dbc&query=${this.inputValue}`)//BISOGNA CAPIRE LA SINTASSI
@@ -46,26 +43,10 @@ var root = new Vue(
                     }
                     //Prelevo i primo 5 nomi degli attori del cast dei film e li pusho nel valore della chiave => actors di =>searchedMovie
                     //Saranno prelevati anche i valori dei generi (senza duplicati) e pushato nel valore della chiave =>genders
-                    this.searchedMovie.forEach((element)=>{
-                      axios
-                       .get(`https://api.themoviedb.org/3/movie/${element.id}/credits?api_key=dc214cd2641489a88b535ac4bc3a1dbc`)
-                       .then((response)=>{
-                         let cast =(response.data.cast);
-                         for( var i = 0; i < cast.length; i++){  
-                           if(!element.genders.includes(cast[i].gender)){
-                           element.genders.push(cast[i].gender);   
-                           } 
-                           if(element.actors.length < 5){
-                              element.actors.push(cast[i].name);
-                           }
-                         }
-                        })
-                    })
+                    this.getCastAndGenders(this.searchedMovie);
                 })    
-                //Se l'array=>searchedTvShow è già occupato al rinnovo della funzione, l'array =>searchedTvShow viene resettato
-                if(this.searchedTvShow.length > 0){
-                    this.searchedTvShow = [];
-                }
+                //Reset dell'array =>searcheTvShow ad ogni avvio della funzione =>search 
+                this.searchedTvShow = [];
                 axios
                     .get(`https://api.themoviedb.org/3/search/tv?api_key=dc214cd2641489a88b535ac4bc3a1dbc&query=${this.inputValue}`)
                     .then((response)=>{
@@ -88,21 +69,7 @@ var root = new Vue(
                         }       
                         //Prelevo i primo 5 nomi degli attori del cast dei film e li pusho nel valore della chiave => actors di =>searchedTvShow
                         //Saranno prelevati anche i valori dei generi (senza duplicati) e pushato nel valore della chiave =>genders
-                    this.searchedTvShow.forEach((element)=>{
-                      axios
-                       .get(`https://api.themoviedb.org/3/movie/${element.id}/credits?api_key=dc214cd2641489a88b535ac4bc3a1dbc`)
-                       .then((response)=>{
-                         let cast =(response.data.cast);
-                         for( var i = 0; i < cast.length; i++){ 
-                          if(!element.genders.includes(cast[i].gender)){
-                            element.genders.push(cast[i].gender);   
-                           }      
-                           if(element.actors.length < 5){
-                              element.actors.push(cast[i].name);
-                           }
-                         }
-                        })
-                    })                 
+                        this.getCastAndGenders(this.searchedTvShow);                 
                   })
                     //Reset contenuto => inputValue
                     this.inputValue = '';
@@ -171,16 +138,25 @@ var root = new Vue(
             cutString(string){
               let thisString = string.slice(0, 200);
               return thisString = thisString + '...';
-           },
-
-           //FUNZIONE PROVA
-           cleanArray(array){
-            if(array.length > 0){
-               array = [];
-          }
-           },
-           //FUNZIONE PROVA
-
+          },
+          //Funzione per ciclare un array e pushare e pushare per ogni elemento genere e nomi del cast(fino ad un massimo di 5) interroganso l'API
+          getCastAndGenders(array){
+            array.forEach((element)=>{
+              axios
+                  .get(`https://api.themoviedb.org/3/movie/${element.id}/credits?api_key=dc214cd2641489a88b535ac4bc3a1dbc`)
+                   .then((response)=>{
+                     let cast =(response.data.cast);
+                     for( var i = 0; i < cast.length; i++){ 
+                      if(!element.genders.includes(cast[i].gender)){
+                        element.genders.push(cast[i].gender);   
+                      } 
+                      if(element.actors.length < 5){
+                         element.actors.push(cast[i].name);
+                      }
+                    }
+                  })
+            })
+          },
         },
     }
 )
