@@ -20,9 +20,9 @@ var root = new Vue(
             search(){
               //Reset dell'array =>searchedMovie ad ogni avvio della funzione =>search 
               this.searchedMovie = [];
-              //
+              //Interrogo l'API per cercare un film con lo stesso valore di =>inputValue e pushare nell'array =>searcheMovie per ogni risultato un oggetto contenente diverse info
               axios
-                .get(`https://api.themoviedb.org/3/search/movie?api_key=dc214cd2641489a88b535ac4bc3a1dbc&query=${this.inputValue}`)//BISOGNA CAPIRE LA SINTASSI
+                .get(`https://api.themoviedb.org/3/search/movie?api_key=dc214cd2641489a88b535ac4bc3a1dbc&query=${this.inputValue}`)
                 .then((response)=>{
                     let result = response.data.results;
                     for( var i = 0; i < result.length; i++){
@@ -47,6 +47,7 @@ var root = new Vue(
                 })    
                 //Reset dell'array =>searcheTvShow ad ogni avvio della funzione =>search 
                 this.searchedTvShow = [];
+                //Interrogo l'API per cercare un film con lo stesso valore di =>inputValue e pushare nell'array =>searcheTvShow per ogni risultato un oggetto contenente diverse info
                 axios
                     .get(`https://api.themoviedb.org/3/search/tv?api_key=dc214cd2641489a88b535ac4bc3a1dbc&query=${this.inputValue}`)
                     .then((response)=>{
