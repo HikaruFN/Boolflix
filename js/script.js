@@ -5,7 +5,7 @@ var root = new Vue(
             //Indice corrente
             currentIndex: null,
             //Array contenente le lingue supportate
-            supportedLanguages: ['it','en','fr','es','de','zh','ja','ko','ru'], //non sono sicuro di questa soluzione
+            supportedLanguages: ['it','en','fr','es','de','zh','ja','ko','ru'],
             //contiene il valore del testo legato con v-model alla input
             inputValue: 'digimon',//ALLA FINE RICORDATI DI SVUOTRARE LA STRINGA    
             //Array contenente film cercato 
@@ -19,9 +19,9 @@ var root = new Vue(
             //Al termine il valore di input value viene resettato
             //Se l'array=>searchedMovies è già occupato al rinnovo della funzione, l'array =>searchedMovies viene resettato 
             search(){
-              if(this.searchedMovie.length > 0){
-                  this.searchedMovie = [];
-              }
+              //FUNZIONE PROVA
+              this.cleanArray(this.searchedMovie);
+              //FUNZIONE PROVA
               //
               axios
                 .get(`https://api.themoviedb.org/3/search/movie?api_key=dc214cd2641489a88b535ac4bc3a1dbc&query=${this.inputValue}`)//BISOGNA CAPIRE LA SINTASSI
@@ -170,7 +170,16 @@ var root = new Vue(
             cutString(string){
               let thisString = string.slice(0, 200);
               return thisString = thisString + '...';
-          },
+           },
+
+           //FUNZIONE PROVA
+           cleanArray(array){
+            if(array.length > 0){
+              return array = [];
+          }
+           }
+           //FUNZIONE PROVA
+
         },
     }
 )
