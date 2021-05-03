@@ -36,7 +36,13 @@
 
         <!--MAIN-->
         <main>
-
+            <!---->
+            <div class="gender-list-container">
+                <ul class=>
+                    <li v-for="element in gendersList"><b>{{element.name}}</b></li>
+                </ul>
+            </div>
+            <!---->
             <!--Movies Section-->
             <div v-if="searchedMovie.length > 0" class="movie-section-logo-container">
                 <img src="img/movies.png" alt="movies">

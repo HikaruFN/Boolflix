@@ -11,7 +11,9 @@ var root = new Vue(
             //Array contenente film cercato 
             searchedMovie: [],
             //Array contenente Serie-TV cercata     
-            searchedTvShow: []  
+            searchedTvShow: [],  
+            //Array generi
+            gendersList: []
         },
         methods: {
             //Funzione =>search che interroga l'api =>themoviedb per ricevere le informazioni riguardanti il film con titolo uguale a quello ricevuto da =>inputValue
@@ -43,7 +45,7 @@ var root = new Vue(
                     }
                     //Prelevo i primo 5 nomi degli attori del cast dei film e li pusho nel valore della chiave => actors di =>searchedMovie
                     //Saranno prelevati anche i valori dei generi (senza duplicati) e pushato nel valore della chiave =>genders
-                    this.getCastAndGenders(this.searchedMovie);
+                    this.getCastAndGenders(this.searchedMovie); 
                 })    
                 //Reset dell'array =>searcheTvShow ad ogni avvio della funzione =>search 
                 this.searchedTvShow = [];
@@ -159,6 +161,18 @@ var root = new Vue(
             })
           },
         },
+        mounted(){
+          //Interrogo l'API per prelevare le Info sui generi disponibili e li pusho nell'array =>gendersList;
+          axios
+            .get(`https://api.themoviedb.org/3/genre/movie/list?api_key=dc214cd2641489a88b535ac4bc3a1dbc`)
+            .then((response)=>{
+              let genres = response.data.genres;
+              genres.forEach((element)=>{
+                this.gendersList.push(element);
+              })
+            })
+            console.log(this.gendersList);
+        }
     }
 )
 

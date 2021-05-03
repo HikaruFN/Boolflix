@@ -79,3 +79,20 @@ main{
     background-color: #434343;
     padding: 50px 30px;
 }
+/*Genders List*/
+.gender-list-container{
+    margin-bottom: 40px;
+}
+.gender-list-container ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+.gender-list-container ul li{
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.gender-list-container ul li:hover{
+    color: red;
+}
