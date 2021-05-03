@@ -43,8 +43,8 @@
             class="gender-list-container">
                 <ul class=>
                     <li 
-                    @click=""
-                    v-for="element in gendersList"><b>{{element.name}}</b></li>
+                    @click="filterForGender(index)"
+                    v-for="(element, index) in gendersList"><b>{{element.name}}{{index}}</b></li>
                 </ul>
             </div>
             <!--End Gender List-->
@@ -56,6 +56,7 @@
             <!--Movie Card-->
             <div class="movie-cards-container">
                 <div
+                    v-if="element.visibility == true"
                     @mouseover="changeIndexOnEnter( searchedMovie,index)"
                     @mouseleave="changeIndexOnLeave(searchedMovie)"
                     v-for="(element, index) in searchedMovie"
@@ -94,6 +95,7 @@
             <!--TV Show Card-->
             <div class="tvshow-cards-container">
                 <div
+                    v-if="element.visibility == true"
                     @mouseover="changeIndexOnEnter( searchedTvShow,index)"
                     @mouseleave="changeIndexOnLeave(searchedTvShow)"
                     v-for="(element, index) in searchedTvShow"

@@ -40,7 +40,8 @@ var root = new Vue(
                                 id: result[i].id,
                                 genders: [],
                                 gendersId: result[i].genre_ids,
-                                actors:[]
+                                actors:[],
+                                visibility: true
                             }
                         )
                     }
@@ -68,15 +69,17 @@ var root = new Vue(
                                     id: result[i].id,
                                     genders: [],
                                     gendersId: result[i].genre_ids,
-                                    actors:[]
+                                    actors:[],
+                                    visibility: true
                                 }
                             )
                         }       
                         //Prelevo i primo 5 nomi degli attori del cast dei film e li pusho nel valore della chiave => actors di =>searchedTvShow
                         //Saranno prelevati anche i valori dei generi (senza duplicati) e pushato nel valore della chiave =>genders
                         this.getCastAndGenders(this.searchedTvShow);     
-                        console.log(this.searchedMovie);
-                        console.log(this.searchedTvShow);          
+                        console.log(this.searchedMovie[0]);
+                        console.log(this.searchedTvShow); 
+                        console.log(this.gendersList);         
                   })
                     //Reset contenuto => inputValue
                     this.inputValue = '';
@@ -165,9 +168,14 @@ var root = new Vue(
             })
           },
           //
-          filterForGender(){
-            
-          }
+          filterForGender(index){
+            for(var i = 0; i < this.searchedMovie.length; i++){
+              if(this.searchedMovie[i].gendersId.includes(this.gendersId[index].id)){
+                console.log(this.searchedMovie)
+              }
+            }
+          },
+          //
         },
         mounted(){
           //Interrogo l'API per prelevare le Info sui generi disponibili e li pusho nell'array =>gendersList;
@@ -179,7 +187,6 @@ var root = new Vue(
                 this.gendersList.push(element);
               })
             })
-            console.log(this.gendersList);
         }
     }
 )
