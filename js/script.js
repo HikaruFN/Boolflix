@@ -9,7 +9,7 @@ var root = new Vue(
             //Array contenente le lingue supportate
             supportedLanguages: ['it','en','fr','es','de','zh','ja','ko','ru'],
             //contiene il valore del testo legato con v-model alla input
-            inputValue: 'digimon',//ALLA FINE RICORDATI DI SVUOTRARE LA STRINGA    
+            inputValue: '',    
             //Array contenente film cercato 
             searchedMovie: [],
             //Array contenente Serie-TV cercata     
@@ -97,21 +97,6 @@ var root = new Vue(
                 let newNumber = Math.ceil(number / 2); 
                 return newNumber;                
             },
-            //Funzione che converte numeri in stelle
-            fromNumberToStars(number){
-              let star = '<i class="fas fa-star"></i>';
-                if(number <= 0 && number <= 1){                    
-                   return number = "Vote: " + star;
-                }else if(number == 2){
-                  return number = "Vote: " + star + star;
-                }else if(number == 3){
-                  return number = "Vote: " + star + star + star;
-                }else if(number == 4){
-                  return number = "Vote: " + star + star + star + star;
-                }else if(number == 5){
-                  return number = "Vote: " + star + star + star + star + star;
-                }
-            },
             //Funzione legata al mouse enter, cambia indice corrente =>currentIndex e cambia lo stato dell' hover dell'elemento con indice attivo in true
             changeIndexOnEnter(array, index){
               this.currentIndex = index;
@@ -161,9 +146,10 @@ var root = new Vue(
                   {   
                       name: result[i].name,
                       title: result[i].title,
-                      originalTitle: result[i].original_name,
+                      originalName: result[i].original_name,
+                      originalTitle: result[i].original_title,
                       language: result[i].original_language,
-                      vote: parseInt(result[i].vote_average),
+                      vote: this.numberTransform(parseInt(result[i].vote_average)),
                       plot: result[i].overview,
                       backdrop: result[i].poster_path,
                       hover: false,

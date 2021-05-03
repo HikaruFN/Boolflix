@@ -8,6 +8,7 @@
 /*COMMON*/
 .fas{
     color: #FEBC00;
+    margin-left: 5px;
 }
 .movie-section-logo-container, .tvshow-section-logo-container{
     display: flex;

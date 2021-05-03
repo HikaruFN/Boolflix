@@ -75,7 +75,7 @@
                      <!--Original Title-->
                      <span v-if="element.title != element.originalTitle"><b>Original Title</b>: {{element.originalTitle}}</span>
                      <!--Vote-->
-                     <span v-html="fromNumberToStars(numberTransform(element.vote))"><b>Vote</b>:</span> <!--POI LEGGI V-HTML-->
+                     <span v-if="element.vote > 0">Vote :<i v-for="numero in element.vote" class="fas fa-star"></i></span>
                      <!--Plot-->
                      <span v-if="element.plot.length > 0"><b>Overview</b>: {{cutString(element.plot)}}</span>
                      <!--Actors-->
@@ -124,9 +124,9 @@
                       <!--Title-->
                       <span><b>Title</b>: {{element.name}}</span>
                       <!--Original Title-->
-                      <span v-if="element.title != element.originalTitle"><b>Original Title</b>: {{element.originalTitle}}</span>
+                      <span v-if="element.title != element.originalName"><b>Original Title</b>: {{element.originalName}}</span>
                       <!--Vote-->
-                      <span v-html="fromNumberToStars(numberTransform(element.vote))"><b>Vote</b>:</span> <!--POI LEGGI V-HTML-->
+                      <span v-if="element.vote > 0">Vote :<i v-for="numero in element.vote" class="fas fa-star"></i></span>
                       <!--Plot-->
                       <span v-if="element.plot.length > 0"><b>Overview</b>: {{cutString(element.plot)}}</span>
                       <!--Actors-->
