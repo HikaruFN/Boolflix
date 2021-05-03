@@ -164,6 +164,10 @@ var root = new Vue(
                   })
             })
           },
+          //
+          filterForGender(){
+            
+          }
         },
         mounted(){
           //Interrogo l'API per prelevare le Info sui generi disponibili e li pusho nell'array =>gendersList;
