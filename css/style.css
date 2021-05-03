@@ -92,9 +92,10 @@ main{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 .gender-list-container ul li{
-    margin-left: 5px;
+    margin: 10px;
     cursor: pointer;
     font-size: 20px;
 }

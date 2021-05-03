@@ -24,7 +24,7 @@ var root = new Vue(
             search(){
               //Reset dell'array =>searchedMovie ad ogni avvio della funzione =>search 
               this.searchedMovie = [];
-              //Interrogo l'API per cercare un film con lo stesso valore di =>inputValue e pushare nell'array =>searcheMovie per ogni risultato un oggetto contenente diverse info
+              //Interrogo l'API per cercare un film con lo stesso valore di =>inputValue
               axios
                 .get("https://api.themoviedb.org/3/search/movie",{
                   params:{
@@ -34,31 +34,14 @@ var root = new Vue(
                 })
                 .then((response)=>{
                     let result = response.data.results;
-                    for( var i = 0; i < result.length; i++){
-                        this.searchedMovie.push(
-                            {
-                                title: result[i].title,
-                                originalTitle: result[i].original_title,
-                                language: result[i].original_language,
-                                vote: parseInt(result[i].vote_average),
-                                plot: result[i].overview,
-                                backdrop: result[i].poster_path,
-                                hover: false,
-                                id: result[i].id,
-                                genders: [],
-                                gendersId: result[i].genre_ids,
-                                actors:[],
-                                visibility: true
-                            }
-                        )
-                    }
+                    this.pushIntoArray(result, this.searchedMovie);
                     //Prelevo i primo 5 nomi degli attori del cast dei film e li pusho nel valore della chiave => actors di =>searchedMovie
                     //Saranno prelevati anche i valori dei generi (senza duplicati) e pushato nel valore della chiave =>genders
                     this.getCastAndGenders(this.searchedMovie); 
                 })    
                 //Reset dell'array =>searcheTvShow ad ogni avvio della funzione =>search 
                 this.searchedTvShow = [];
-                //Interrogo l'API per cercare un film con lo stesso valore di =>inputValue e pushare nell'array =>searcheTvShow per ogni risultato un oggetto contenente diverse info
+                //Interrogo l'API per cercare un film con lo stesso valore di =>inputValue
                 axios
                     .get("https://api.themoviedb.org/3/search/tv",{
                       params:{
@@ -68,24 +51,7 @@ var root = new Vue(
                     })
                     .then((response)=>{
                         let result = response.data.results;
-                        for(var i = 0; i < result.length; i++){
-                            this.searchedTvShow.push(
-                                {
-                                    title: result[i].name,
-                                    originalTitle: result[i].original_name,
-                                    language: result[i].original_language,
-                                    vote: parseInt(result[i].vote_average),
-                                    plot: result[i].overview,
-                                    backdrop: result[i].poster_path,
-                                    hover: false,
-                                    id: result[i].id,
-                                    genders: [],
-                                    gendersId: result[i].genre_ids,
-                                    actors:[],
-                                    visibility: true
-                                }
-                            )
-                        }       
+                        this.pushIntoArray(result, this.searchedTvShow);
                         //Prelevo i primo 5 nomi degli attori del cast dei film e li pusho nel valore della chiave => actors di =>searchedTvShow
                         //Saranno prelevati anche i valori dei generi (senza duplicati) e pushato nel valore della chiave =>genders
                         this.getCastAndGenders(this.searchedTvShow);            
@@ -187,6 +153,28 @@ var root = new Vue(
               }
             }
           },
+          //Funzione che cicla i risultati della chiamata API e pusha negli array pre inizializzati diverse info provenienti dalla stass API
+          pushIntoArray(result, array){
+            for(var i = 0; i < result.length; i++){
+              array.push(
+                  {   
+                      name: result[i].name,
+                      title: result[i].title,
+                      originalTitle: result[i].original_name,
+                      language: result[i].original_language,
+                      vote: parseInt(result[i].vote_average),
+                      plot: result[i].overview,
+                      backdrop: result[i].poster_path,
+                      hover: false,
+                      id: result[i].id,
+                      genders: [],
+                      gendersId: result[i].genre_ids,
+                      actors:[],
+                      visibility: true
+                  }
+              )
+          }  
+          },          
         },
         mounted(){
           //Interrogo l'API per prelevare le Info sui generi disponibili e li pusho nell'array =>gendersList;

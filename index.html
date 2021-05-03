@@ -95,7 +95,7 @@
                  <ul class=>
                      <li 
                      @click="filterForGender(searchedTvShow, index)"
-                     v-for="(element, index) in gendersList"><b>{{element.name}}</b></li>
+                     v-for="(element, index) in gendersList"><b>{{element.title}}</b></li>
                  </ul>
              </div>
              <!--End Gender List-->
@@ -122,7 +122,7 @@
                       class="tvshow-info-container"
                       v-else>
                       <!--Title-->
-                      <span><b>Title</b>: {{element.title}}</span>
+                      <span><b>Title</b>: {{element.name}}</span>
                       <!--Original Title-->
                       <span v-if="element.title != element.originalTitle"><b>Original Title</b>: {{element.originalTitle}}</span>
                       <!--Vote-->
