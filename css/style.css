@@ -13,6 +13,40 @@
     display: flex;
     justify-content: center;
 }
+/*Movie Card / TvShow Card*/
+.movie-cards-container, .tvshow-cards-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.movie-card, .tvshow-card{
+    margin-top: 50px;
+    margin-left: 50px;
+    width: calc(100% / 6 - 50px);
+    border: 1px solid white;
+    box-shadow: 10px 10px 10px;
+}
+.movie-card img, .tvshow-card img{
+    width: 100%;
+    height: 100%;
+}
+/*Movie Hidden Info / TvShow Card Hidden Info*/
+.movie-info-container, .tvshow-info-container{
+   display: flex;
+   flex-direction: column; 
+   justify-content: center;
+   align-items: flex-start;
+}
+.movie-info-container span, .tvshow-info-container span{
+    color: white;
+    padding-top: 10px ;
+    padding-left: 5px;
+    
+}
+.movie-info-container img, .tvshow-info-container img{
+    width: 15%;
+    vertical-align: middle;
+}
+
 /*HEADER*/
 .header-container{
     padding: 20px;
@@ -44,37 +78,4 @@ main{
     
     background-color: #434343;
     padding: 50px 30px;
-}
-/*Movie Card*/
-.movie-cards-container, .tvshow-cards-container{
-    display: flex;
-    flex-wrap: wrap;
-}
-.movie-card, .tvshow-card{
-    margin-top: 50px;
-    margin-left: 50px;
-    width: calc(100% / 6 - 50px);
-    border: 1px solid white;
-    box-shadow: 10px 10px 10px;
-}
-.movie-card img, .tvshow-card img{
-    width: 100%;
-    height: 100%;
-}
-/*Movie Hidden Info*/
-.movie-info-container, .tvshow-info-container{
-   display: flex;
-   flex-direction: column; 
-   justify-content: center;
-   align-items: flex-start;
-}
-.movie-info-container span, .tvshow-info-container span{
-    color: white;
-    padding-top: 10px ;
-    padding-left: 5px;
-    
-}
-.movie-info-container img, .tvshow-info-container img{
-    width: 15%;
-    vertical-align: middle;
 }
