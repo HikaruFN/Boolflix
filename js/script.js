@@ -20,7 +20,8 @@ var root = new Vue(
             //Se l'array=>searchedMovies è già occupato al rinnovo della funzione, l'array =>searchedMovies viene resettato 
             search(){
               //FUNZIONE PROVA
-              this.cleanArray(this.searchedMovie);
+              
+              this.searchedMovie = cleanArray(this.searchedMovie);
               //FUNZIONE PROVA
               //
               axios
@@ -175,9 +176,9 @@ var root = new Vue(
            //FUNZIONE PROVA
            cleanArray(array){
             if(array.length > 0){
-              return array = [];
+               array = [];
           }
-           }
+           },
            //FUNZIONE PROVA
 
         },
