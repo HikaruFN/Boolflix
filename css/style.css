@@ -82,6 +82,8 @@ main{
 /*Genders List*/
 .gender-list-container{
     margin-bottom: 40px;
+    border-bottom: 2px solid;
+    padding-bottom: 40px;
 }
 .gender-list-container ul{
     list-style: none;

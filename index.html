@@ -38,7 +38,9 @@
         <main>
 
             <!--Gender List-->
-            <div class="gender-list-container">
+            <div 
+            v-if=" searchedMovie.length > 0 || searchedTvShow.length > 0"
+            class="gender-list-container">
                 <ul class=>
                     <li v-for="element in gendersList"><b>{{element.name}}</b></li>
                 </ul>

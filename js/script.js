@@ -39,6 +39,7 @@ var root = new Vue(
                                 hover: false,
                                 id: result[i].id,
                                 genders: [],
+                                gendersId: result[i].genre_ids,
                                 actors:[]
                             }
                         )
@@ -66,13 +67,16 @@ var root = new Vue(
                                     hover: false,
                                     id: result[i].id,
                                     genders: [],
+                                    gendersId: result[i].genre_ids,
                                     actors:[]
                                 }
                             )
                         }       
                         //Prelevo i primo 5 nomi degli attori del cast dei film e li pusho nel valore della chiave => actors di =>searchedTvShow
                         //Saranno prelevati anche i valori dei generi (senza duplicati) e pushato nel valore della chiave =>genders
-                        this.getCastAndGenders(this.searchedTvShow);                 
+                        this.getCastAndGenders(this.searchedTvShow);     
+                        console.log(this.searchedMovie);
+                        console.log(this.searchedTvShow);          
                   })
                     //Reset contenuto => inputValue
                     this.inputValue = '';
